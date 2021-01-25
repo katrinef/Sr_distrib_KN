@@ -1,0 +1,117 @@
+# Example YAML configuration for TARDIS
+tardis_config_version: v1.0
+
+supernova:
+  luminosity_requested: 2.9439120957832668e+41 erg/s #4.931230559e+41 erg/s
+  #2.229458984e+41 erg/s
+  #1.625031765e+41 erg/s
+  #1.278840749e+41 erg/s
+  time_explosion: 1.427 day
+  #2.417 day
+  #3.413 day
+  #4.403 day
+  #T,t and R: https://arxiv.org/pdf/1710.05841.pdf
+
+#atom_data: kurucz_cd23_chianti_H_He.h5
+atom_data: tardis_df_Sr.h5
+
+model:
+  structure:
+    type: specific
+    velocity:
+      start: 0.9e+8 m/s #0.9e+8 m/s
+      stop: 1.05e+8 m/s
+      num: 20
+    density:
+      type : power_law
+      #time_0: 0.5 day
+      rho_0: 0.002e-11 g/cm^3
+      v_0: 0.14e+8 m/s
+      exponent: -3
+
+  abundances:
+    type: uniform
+    As: 9.220630025999153
+    Se: 102.03156176310542
+    Br: 16.17389201281819
+    Kr: 72.62198440050787
+    Rb: 8.78967894068565
+    Sr: 11.000362778886265
+#     Y: 1.96660922667634
+#     Zr: 5.501541810266643
+#     Nb: 0.5187738073644113
+#     Mo: 2.362824233629602
+#     Ru: 1.9130237620170507
+#     Rh: 0.49328859060402686
+#     Pd: 1.311566600157204
+#     Ag: 0.6585933248684926
+#     Cd: 1.2791432371969282
+#     In: 0.19237862023096924
+#     Sn: 2.584799564665336
+#     Sb: 0.3794455529354858
+#     Te: 5.983372634379345
+#     I: 1.599552572706935
+#     Xe: 7.006983493560673
+#     Cs: 0.48508827619565875
+#     Ba: 1.0
+#     La: 0.16924390833786804
+#     Ce: 0.2943043714855796
+#     Pr: 0.1302557591148195
+#     Nd: 0.5505547493802527
+#     Sm: 0.2747898905617026
+#     Eu: 0.1398149827680029
+#     Gd: 0.46036640667513146
+#     Tb: 0.08816736199286536
+#     Dy: 0.5190761231029688
+#     Ho: 0.12613670717697564
+#     Er: 0.3188070620956527
+#     Tm: 0.055785416288772004
+#     Yb: 0.23024366648527722
+#     Lu: 0.045664792309087605
+#     Hf: 0.09172864139307092
+#     Ta: 0.016950843460910577
+#     W: 0.07869278674647803
+#     Re: 0.07059405042626518
+#     Os: 0.9055565632746841
+#     Ir: 0.9995283874478506
+#     Pt: 1.8045226434488175
+#     Au: 0.27677761654271726
+#     Hg: 0.3413053993590906
+#     Tl: 0.08005623072737166
+#     Pb: 0.6442953020134228
+#     Bi: 0.16604389624523852
+#     Th: 0.0530564121168148
+#     U: 0.013498397726585645
+
+
+plasma:
+  disable_electron_scattering: no
+  ionization: lte
+  excitation: lte
+  radiative_rates_type: dilute-blackbody
+  line_interaction_type: macroatom
+
+montecarlo:
+  seed: 23111963
+  no_of_packets: 4.0e+4
+  iterations: 20
+  nthreads: 1
+
+  last_no_of_packets: 1.e+5
+  no_of_virtual_packets: 10
+
+  convergence_strategy:
+    type: damped
+    damping_constant: 1.0
+    threshold: 0.05
+    fraction: 0.8
+    hold_iterations: 3
+    t_inner:
+      damping_constant: 1.0
+
+spectrum:
+  start: 3200 angstrom
+  stop: 24800 angstrom
+  #start: 500 angstrom
+  #stop: 20000 angstrom
+  num: 10000
